@@ -1,0 +1,11 @@
+cookie:
+  expiry_days: 30
+  key: some_secure_key
+  name: personalized_llm_cookie
+credentials:
+  usernames:
+    deepakdevulapalli@gmail.com:
+      age: 23
+      dob: '2002-11-04'
+      name: Deepak
+      password: $2b$12$h2h7dVDlKyZxNRBbj8Qr5uGUWvpF23K7iDf0OzL1uD0ccWMnRPhVm
