@@ -55,6 +55,30 @@
     [
       "AI",
       "I'm doing well, thank you for asking! It's great to chat with you again, Deepak! How about you? How's life in Bangalore treating you? I'm here to help with any questions or topics you'd like to discuss. Need assistance with something or just want to chat? I'm all ears!"
+    ],
+    [
+      "User",
+      "hola"
+    ],
+    [
+      "AI",
+      "Hola Deepak! How are you doing today? I'm here to chat and help with any questions or topics you'd like to discuss. How's life in Bangalore treating you?"
+    ],
+    [
+      "User",
+      "hehe"
+    ],
+    [
+      "AI",
+      "Hehe, glad you're in a good mood, Deepak! What's making you smile today? Need any assistance or just want to chat? I'm here to help with any questions or topics you'd like to discuss."
+    ],
+    [
+      "User",
+      "hilo"
+    ],
+    [
+      "AI",
+      "Hello Deepak! How are you doing today? I'm here to chat and help with any questions or topics you'd like to discuss. How's life in Bangalore treating you?"
     ]
   ],
   "summaries": {
@@ -64,6 +88,9 @@
     "4": "The AI provided additional suggestions and recommendations for exploring Bangalore, covering history, culture, food, and adventure activities. The user was also invited to seek help with planning another trip or gaining information on various topics.",
     "5": "The user asked about WhatsApp and received information about the popular messaging app and an offer for more details or usage tips.",
     "6": "The user greeted the AI, and the AI responded with a friendly hello, inquiring about the user's life and offering assistance.",
-    "7": "The AI responded positively to being asked how it was doing and then offered to assist with any questions or topics the user wanted to discuss. It also attempted to personalize the conversation with a greeting by name."
+    "7": "The AI responded positively to being asked how it was doing and then offered to assist with any questions or topics the user wanted to discuss. It also attempted to personalize the conversation with a greeting by name.",
+    "8": "The user greeted the AI with 'hola' and the AI responded with a friendly hello and an inquiry about the user's well-being and location.",
+    "9": "The user expressed a positive emotion with \"hehe\" and the AI responded with a friendly inquiry.",
+    "10": "The user initiated a conversation with 'hilo' and the AI responded with a greeting and introduction."
   }
 }
