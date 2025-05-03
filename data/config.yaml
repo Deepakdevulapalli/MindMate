@@ -4,6 +4,11 @@ cookie:
   name: personalized_llm_cookie
 credentials:
   usernames:
+    abcd@gmail.com:
+      age: 0
+      dob: '2025-05-03'
+      name: Shreya
+      password: $2b$12$m4mcYlCGSbOpuSi1q0rwIOPxbUVgGV/ujUJw8F2ZiyDwyIXrs6yFK
     deepakdevulapalli@gmail.com:
       age: 23
       dob: '2002-11-04'

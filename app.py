@@ -1,7 +1,9 @@
-from utils.auth_utils import load_config, get_authenticator, signup_form
-from utils.chat_ui import render_chat  # or inline if you skipped chat_ui.py
 import streamlit as st
 import base64
+
+from utils.auth_utils import load_config, get_authenticator, signup_form
+from utils.chat_ui import render_chat  # updated chat_ui.py
+# No direct session_storage calls needed here
 
 # Page config
 st.set_page_config("MindMate", layout="centered")
@@ -20,7 +22,6 @@ st.markdown("""
         body {
             background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
         }
-
 
         /* Header with logo, heading and caption */
         .header {
@@ -117,10 +118,10 @@ st.markdown("""
     </style>
 """, unsafe_allow_html=True)
 
-# Visual container
+# Main container start
 st.markdown('<div class="main">', unsafe_allow_html=True)
 
-# Header with heading, caption, and base64 logo
+# Header with heading, caption, and logo
 logo_html = (
     "<div class='header'>"
     "<h1>Welcome to MindMate</h1>"
@@ -130,13 +131,14 @@ logo_html = (
 )
 st.markdown(logo_html, unsafe_allow_html=True)
 
-# Load config
+# Load config for authenticator
 cfg = load_config()
 
-# toggle in-session
+# In-session toggle for signup
 if "show_signup" not in st.session_state:
     st.session_state.show_signup = False
 
+# Initialize authenticator
 auth = get_authenticator(cfg)
 auth.login(key="login", location="main")
 
@@ -144,13 +146,15 @@ status   = st.session_state.get("authentication_status")
 name     = st.session_state.get("name")
 username = st.session_state.get("username")
 
+# Signup flow
 if st.session_state.show_signup:
     done = signup_form(cfg)
     if done:
         st.session_state.show_signup = False
-    st.markdown('</div>', unsafe_allow_html=True)  # close .main
+    st.markdown('</div>', unsafe_allow_html=True)
     st.stop()
 
+# Authentication handling
 if status in (False, None):
     if st.button("New user? Sign up", key="to_signup"):
         st.session_state.show_signup = True
@@ -158,13 +162,27 @@ if status in (False, None):
         st.markdown('<div class="error-box">❌ Bad credentials. Please try again.</div>', unsafe_allow_html=True)
     else:
         st.markdown('<div class="info-box">🔐 Enter login details to continue.</div>', unsafe_allow_html=True)
-    st.markdown('</div>', unsafe_allow_html=True)  # close .main
+    st.markdown('</div>', unsafe_allow_html=True)
     st.stop()
 
-# Logged in
-auth.logout("Logout", key="logout_btn", location="sidebar")
+# ────────────────────────────────────────────────────────────────────────────
+# Detect and clear old chat state whenever the logged‑in user changes
+current_user = username
+prev_user    = st.session_state.get("prev_user")
 
+if prev_user is None or prev_user != current_user:
+    for key in ["chat_id", "chat_history", "summaries", "turn_counter"]:
+        if key in st.session_state:
+            del st.session_state[key]
+    st.session_state["prev_user"] = current_user
+# ────────────────────────────────────────────────────────────────────────────
+
+# Logged in UI
+auth.logout("Logout", key="logout_btn", location="sidebar")
 st.markdown(f'<div class="success-box">✅ Welcome, {name}!</div>', unsafe_allow_html=True)
+
+# Render the chat interface
 render_chat(username)
 
-st.markdown('</div>', unsafe_allow_html=True)  # close .main
+# Main container end
+st.markdown('</div>', unsafe_allow_html=True)

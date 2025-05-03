@@ -20,7 +20,6 @@ def generate_response(prompt, context):
         "content": (
             "You are a personalized assistant for the user. "
             "Use the user's past experience below to tailor your responses in a helpful and context-aware way. "
-            "Past user experience:\n"
             f"{context}\n"
             "Now respond to the following user query accordingly."
         )
